@@ -7,7 +7,10 @@ class HTMLNode:
 
     def __eq__(self, other):
         if isinstance(other, HTMLNode):
-            if self.tag == other.tag and self.value == other.value and self.children == other.children and self.props == other.props:
+            if (
+                self.tag == other.tag and self.value == other.value and
+                self.children == other.children and self.props == other.props
+            ):
                 return True
             return False
 
@@ -24,6 +27,6 @@ class HTMLNode:
             return props_str
 
         for p in self.props:
-            props_str = props_str + f"{p}={self.props[p]} "
+            props_str = props_str + f' {p}="{self.props[p]}"'
 
         return props_str

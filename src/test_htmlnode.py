@@ -6,7 +6,7 @@ class TestHTMLNode(unittest.TestCase):
         node = HTMLNode("<p>", "Lorem Ipsum", None, {"href": "https://www.github.com"})
         node2 = HTMLNode("<p>", "Lorem Ipsum", None, {"href": "https://www.github.com"})
         self.assertEqual(node, node2)
-        self.assertEqual(node.props_to_html(), "href=https://www.github.com ")
+        self.assertEqual(node.props_to_html(), ' href="https://www.github.com"')
 
     def testIneq(self):
         node = HTMLNode("<p>", "Lorem Ipsum", None, None)
