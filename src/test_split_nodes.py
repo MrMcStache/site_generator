@@ -1,5 +1,5 @@
 import unittest
-from split_nodes_delimiter import *
+from split_node import *
 
 class TestSplitNodesDelimiter(unittest.TestCase):
     def test_nodes(self):
