@@ -23,5 +23,7 @@ class HTMLNode:
         if self.props is None or len(self.props) == 0:
             return props_str
 
-        for p in props:
-            props_str = props_str + f"{p}={props[p]} "
+        for p in self.props:
+            props_str = props_str + f"{p}={self.props[p]} "
+
+        return props_str
