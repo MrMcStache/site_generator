@@ -13,6 +13,8 @@ class TestSplitNodesDelimiter(unittest.TestCase):
         new_nodes5 = split_nodes_delimiter([node3], "_", TextType.ITALIC)
         new_nodes6 = split_nodes_delimiter([node, node2, node3], "_", TextType.ITALIC)
 
+        #print(new_nodes)
+
         self.assertEqual(str(new_nodes), "[TextNode(This is text with a , text, None), TextNode(code block, code, None), TextNode( word, text, None)]")
         self.assertEqual(str(new_nodes2), "[TextNode(This is text with a , text, None), TextNode(bold, bold, None), TextNode( word, text, None)]")
         self.assertEqual(str(new_nodes3), "[TextNode(This is text with a , text, None), TextNode(code block, code, None), TextNode( word, text, None), TextNode(This is text with a **bold** word, text, None)]")
