@@ -31,3 +31,41 @@ def split_nodes_delimiter(old_nodes, delimiter, text_type):
             #print(f"added {node}: {new_nodes}")
 
     return new_nodes
+
+def split_nodes_image(old_nodes):
+    new_nodes = []
+
+    for node in old_nodes:
+        if node.text_type == TextType.TEXT:
+            text = node.text
+            matches = extract_markdown_images(text)
+
+            for i in range(len(matches)):
+                before, after = text.split(f"![{matches[i][0]}]({matches[i][1]})", 1)
+                text = after
+
+                if before != "":
+                    new_nodes.append(TextNode(before, TextType.TEXT))
+
+                new_nodes.append(TextNode(matches[i][0], TextType.IMAGE, matches[i][1]))
+
+    return new_nodes
+
+def split_nodes_link(old_nodes):
+    new_nodes = []
+
+    for node in old_nodes:
+        if node.text_type == TextType.TEXT:
+            text = node.text
+            matches = extract_markdown_links(text)
+
+            for i in range(len(matches)):
+                before, after = text.split(f"[{matches[i][0]}]({matches[i][1]})", 1)
+                text = after
+
+                if before != "":
+                    new_nodes.append(TextNode(before, TextType.TEXT))
+
+                new_nodes.append(TextNode(matches[i][0], TextType.LINK, matches[i][1]))
+
+    return new_nodes
