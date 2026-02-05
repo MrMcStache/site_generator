@@ -40,14 +40,22 @@ def split_nodes_image(old_nodes):
             text = node.text
             matches = extract_markdown_images(text)
 
-            for i in range(len(matches)):
-                before, after = text.split(f"![{matches[i][0]}]({matches[i][1]})", 1)
-                text = after
+            if matches == []:
+                new_nodes.append(TextNode(text, TextType.TEXT))
+            else:
+                for i in range(len(matches)):
+                    before, after = text.split(f"![{matches[i][0]}]({matches[i][1]})", 1)
+                    text = after
 
-                if before != "":
-                    new_nodes.append(TextNode(before, TextType.TEXT))
+                    if before != "":
+                        new_nodes.append(TextNode(before, TextType.TEXT))
 
-                new_nodes.append(TextNode(matches[i][0], TextType.IMAGE, matches[i][1]))
+                    new_nodes.append(TextNode(matches[i][0], TextType.IMAGE, matches[i][1]))
+
+                if len(text) != 0:
+                    new_nodes.append(TextNode(text, TextType.TEXT))
+        else:
+            new_nodes.append(node)
 
     return new_nodes
 
@@ -59,13 +67,21 @@ def split_nodes_link(old_nodes):
             text = node.text
             matches = extract_markdown_links(text)
 
-            for i in range(len(matches)):
-                before, after = text.split(f"[{matches[i][0]}]({matches[i][1]})", 1)
-                text = after
+            if matches == []:
+                new_nodes.append(TextNode(text, TextType.TEXT))
+            else:
+                for i in range(len(matches)):
+                    before, after = text.split(f"[{matches[i][0]}]({matches[i][1]})", 1)
+                    text = after
 
-                if before != "":
-                    new_nodes.append(TextNode(before, TextType.TEXT))
+                    if before != "":
+                        new_nodes.append(TextNode(before, TextType.TEXT))
 
-                new_nodes.append(TextNode(matches[i][0], TextType.LINK, matches[i][1]))
+                    new_nodes.append(TextNode(matches[i][0], TextType.LINK, matches[i][1]))
+
+                if len(text) != 0:
+                    new_nodes.append(TextNode(text, TextType.TEXT))
+        else:
+            new_nodes.append(node)
 
     return new_nodes
