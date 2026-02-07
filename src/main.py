@@ -9,7 +9,7 @@ def main():
     verify_public()
 
     #Generate html page from template and copy to public
-    generate_page("content/index.md", "template.html", "public/index.html")
+    generate_pages_recursive("content/", "template.html", "public/")
 
     return 0
 
