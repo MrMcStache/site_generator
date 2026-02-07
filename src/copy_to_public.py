@@ -31,7 +31,7 @@ def copy_to_public(current_dir, cur_pub_dir):
 
 def verify_public():
     static_dir = os.path.abspath("static")
-    public_dir = os.path.abspath("public")
+    public_dir = os.path.abspath("docs")
     #print(static_dir)
     #print(public_dir)
 
