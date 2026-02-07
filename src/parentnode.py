@@ -8,7 +8,7 @@ class ParentNode(HTMLNode):
         if self.tag is None or len(self.tag) == 0:
             raise ValueError("ERROR: parentnode has no tag")
 
-        if self.children == None or len(self.children) == 0:
+        if self.children == None:
             raise ValueError("ERROR: parentnode has no children")
 
         html_str = f'<{self.tag}>'
